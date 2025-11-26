@@ -7,9 +7,9 @@ export default defineConfig({
   server: {
     proxy: {
       '/api': {
-        target: 'https://localhost:32771',
+        target: 'https://backend-examentres-production.up.railway.app',
         changeOrigin: true,
-        secure: false,
+        secure: true,
       },
     },
   },
