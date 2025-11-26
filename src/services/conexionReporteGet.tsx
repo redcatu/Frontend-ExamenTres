@@ -54,8 +54,13 @@ export function useReporteContabilidad() {
     setError(null);
     setReporte(null);
 
-    // Usamos path relativo para que pase por el proxy de Vite
-    const endpoint = `/api/Contabilidades/Reporte/${codigoFactura}`;
+    // En desarrollo usa el proxy de Vite, en producción usa la URL completa
+    const isDevelopment = import.meta.env.DEV;
+    const baseUrl = isDevelopment
+      ? '' // Usa el proxy en desarrollo
+      : 'https://backend-examentres-production.up.railway.app'; // URL completa en producción
+
+    const endpoint = `${baseUrl}/api/Contabilidades/Reporte/${codigoFactura}`;
 
     try {
       const res = await fetch(endpoint, {
